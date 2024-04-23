@@ -1,0 +1,67 @@
+#I am using XOR encyption.This algorithm XORs each pixel value with a key to encrypt the image and then XORs it again with the same key to decrypt it.We have to use PIL(pillow) for image manipulation.
+#CODE:-
+
+from PIL import Image
+import os
+
+def encrypt_image(image_path, key):
+    # Open the image
+    image = Image.open(image_path)
+    # Convert the image to RGB mode
+    image = image.convert('RGB')
+    
+    # Get the image size
+    width, height = image.size
+    
+    # Encrypt the image pixel by pixel
+    for y in range(height):
+        for x in range(width):
+            # Get the pixel value
+            pixel = image.getpixel((x, y))
+            # Encrypt the pixel using XOR
+            encrypted_pixel = tuple([(p ^ key) for p in pixel])
+            # Set the encrypted pixel value
+            image.putpixel((x, y), encrypted_pixel)
+    
+    # Save the encrypted image
+    encrypted_image_path = os.path.splitext(image_path)[0] + '_encrypted.png'
+    image.save(encrypted_image_path)
+    
+    return encrypted_image_path
+
+def decrypt_image(encrypted_image_path, key):
+    # Open the encrypted image
+    encrypted_image = Image.open(encrypted_image_path)
+    # Convert the image to RGB mode
+    encrypted_image = encrypted_image.convert('RGB')
+    
+    # Get the image size
+    width, height = encrypted_image.size
+    
+    # Decrypt the image pixel by pixel
+    for y in range(height):
+        for x in range(width):
+            # Get the encrypted pixel value
+            encrypted_pixel = encrypted_image.getpixel((x, y))
+            # Decrypt the pixel using XOR
+            decrypted_pixel = tuple([(p ^ key) for p in encrypted_pixel])
+            # Set the decrypted pixel value
+            encrypted_image.putpixel((x, y), decrypted_pixel)
+    
+    # Save the decrypted image
+    decrypted_image_path = os.path.splitext(encrypted_image_path)[0] + '_decrypted.png'
+    encrypted_image.save(decrypted_image_path)
+    
+    return decrypted_image_path
+
+# Example usage
+image_path = 'path_to_your_image.png'
+key = 123  # Encryption key
+encrypted_image_path = encrypt_image(image_path, key)
+print(f'Image encrypted and saved as {encrypted_image_path}')
+
+decrypted_image_path = decrypt_image(encrypted_image_path, key)
+print(f'Image decrypted and saved as {decrypted_image_path}')
+
+
+#Replace 'path_to_your_image.png' with the path to your image file.
