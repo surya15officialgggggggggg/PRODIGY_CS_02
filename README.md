@@ -1,31 +1,30 @@
-Caesar Cipher
-This Python program implements the Caesar Cipher algorithm for encrypting and decrypting text messages. The Caesar Cipher is a simple and widely used encryption technique that shifts each letter in the message by a fixed number of positions down or up the alphabet.
+# Image Encryption Tool
 
-Usage
-Clone the repository to your local machine.
-Run the program using Python:
+This Python program demonstrates a simple image encryption and decryption tool using pixel manipulation. It uses XOR encryption to encrypt and decrypt images.
 
-    python caesar_cipher.py
+## Requirements
 
-Follow the on-screen instructions to encrypt or decrypt messages.
-Features
-Encrypt and decrypt messages using the Caesar Cipher algorithm.
-Specify the shift value for encryption and decryption.
-Simple and intuitive command-line interface.
-Example
-mathematica
+- Python 3.x
+- Pillow library (install using `pip install Pillow`)
 
-Choose an option:
-1. Encrypt
-2. Decrypt
-3. Exit
-1
-Enter message to encrypt: Hello, World!
-Enter shift value: 3
-Encrypted message: Khoor, Zruog!
+## Usage
 
-About Prodigy Infotech Company
-  Prodigy Infotech Company is a leading provider of innovative IT solutions, specializing in software development, cybersecurity, and cloud services. As an intern at Prodigy, you have the opportunity to work on cutting-edge projects and gain valuable hands-on experience in the tech industry.
+1. Place the image you want to encrypt in the same directory as the script.
+2. Modify the `image_path` variable in the script to point to your image file.
+3. Run the script. It will encrypt the image and save the encrypted version as a new file.
+4. To decrypt the image, use the `decrypt_image` function in the script.
 
-License
-This project is licensed under the MIT License - see the LICENSE file for details.
+## Example
+
+```python
+image_path = 'path_to_your_image.png'
+key = 123
+encrypted_image_path = encrypt_image(image_path, key)
+print('Image encrypted and saved as', encrypted_image_path)
+
+decrypted_image_path = decrypt_image(encrypted_image_path, key)
+print('Image decrypted and saved as', decrypted_image_path)
+
+##License
+
+This project is licensed under the MIT License. See the LICENSE file for details.
